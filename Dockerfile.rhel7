@@ -1,0 +1,26 @@
+FROM registry.access.redhat.com/rhscl/ruby-23-rhel7:latest
+
+RUN scl enable rh-ruby23 -- bash -c 'gem install rails --version "5.1.0"'
+
+USER root
+
+RUN mkdir /techmaturity
+ADD . /techmaturity
+WORKDIR /techmaturity
+
+RUN mkdir /data
+RUN ln -s /data /techmaturity/data
+RUN chmod 777 /data
+RUN ln -s /data/tmp /techmaturity/tmp
+
+
+RUN chmod 777 entrypoint-rh.sh
+ENV RAILS_ENV production
+
+USER 1001
+RUN scl enable rh-ruby23 -- bash -c 'bundle install'
+
+EXPOSE 3000
+
+CMD ["/techmaturity/entrypoint-rh.sh"]
+
