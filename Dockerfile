@@ -13,6 +13,7 @@ RUN apk --update add openssl ttf-dejavu && rm -rf /var/cache/apk/* && \
 RUN gem install rails --version "5.1.0"
 
 RUN mkdir /techmaturity
+RUN mkdir /data
 ADD . /techmaturity
 WORKDIR /techmaturity
 
