@@ -13,7 +13,7 @@ spec/tmp
 rerun.txt
 pickle-email-*.html
 .env
-Dockerfile
+Dockerfile*
 
 ## Environment normalization:
 /.bundle
